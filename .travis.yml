@@ -8,8 +8,8 @@ before_deploy:
 - echo $TRAVIS_BRANCH
 - echo $TRAVIS_BUILD_NUMBER
 - echo $TRAVIS_REPO_SLUG
-- echo $GITHUB_TOKEN
 - node run.js
+- node run.js > platform.json
 deploy:
   provider: releases
   github_token: $GITHUB_TOKEN
