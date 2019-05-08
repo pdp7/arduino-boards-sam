@@ -32,8 +32,11 @@ async function main() {
   await exec(`tar -h -cvzf ${filename} macchina/ --exclude=".*"`)
   await console.log("filename: " + filename);
   const hash = await trimmedStdout(`sha256sum ${filename} | sed 's/\\s.*//'`)
+  await console.log("hash: " + hash);
   const byteCount = await trimmedStdout(`du -b ${filename} | sed 's/\\s.*//'`)
+  await console.log("byteCount: " + byteCount);
   const boardNames = await getBoardNames()
+  await console.log("boardNames: " + boardNames);
 
   const output = {
     name: 'Macchina SAM Boards (Install "Arduino SAM Boards" first)',
