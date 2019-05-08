@@ -26,17 +26,17 @@ async function main() {
   //await unlink('macchina')
   await symlink('sam', 'macchina')
   const version = await trimmedStdout('git describe');
-  await console.log("version: " + version);
+  await console.error("version: " + version);
 
   const filename = `macchina-sam-${version}.tar.gz`
   await exec(`tar -h -cvzf ${filename} macchina/ --exclude=".*"`)
-  await console.log("filename: " + filename);
+  await console.error("filename: " + filename);
   const hash = await trimmedStdout(`sha256sum ${filename} | sed 's/\\s.*//'`)
-  await console.log("hash: " + hash);
+  await console.error("hash: " + hash);
   const byteCount = await trimmedStdout(`du -b ${filename} | sed 's/\\s.*//'`)
-  await console.log("byteCount: " + byteCount);
+  await console.error("byteCount: " + byteCount);
   const boardNames = await getBoardNames()
-  await console.log("boardNames: " + boardNames);
+  await console.error("boardNames: " + boardNames);
 
   const output = {
     name: 'Macchina SAM Boards (Install "Arduino SAM Boards" first)',
