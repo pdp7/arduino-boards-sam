@@ -26,9 +26,11 @@ async function main() {
   //await unlink('macchina')
   await symlink('sam', 'macchina')
   const version = await trimmedStdout('git describe');
+  await console.log("version: " + version);
 
   const filename = `macchina-sam-${version}.tar.gz`
   await exec(`tar -h -cvzf ${filename} macchina/ --exclude=".*"`)
+  await console.log("filename: " + filename);
   const hash = await trimmedStdout(`sha256sum ${filename} | sed 's/\\s.*//'`)
   const byteCount = await trimmedStdout(`du -b ${filename} | sed 's/\\s.*//'`)
   const boardNames = await getBoardNames()
